@@ -10,7 +10,7 @@ Run the command bellow in the project's folder:
 
 # How to use
 
-After the dependencies are installed, run the command `nodemon src/index.js` or `npm run dev` as defined in package.json. With you fetch requests using Insomnia using the URL http://localhost:3000 with the desired EndPoint
+After the dependencies are installed, run the command `nodemon src/index.js` or `npm run dev` as defined in package.json. You can fetch the requests using Insomnia, using the URL http://localhost:3000 with the required Endpoint.
 
 # Endpoints
 
