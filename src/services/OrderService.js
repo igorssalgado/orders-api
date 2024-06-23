@@ -19,8 +19,8 @@ const transformOrderData = async (order) => {
   return orderNew;
 };
 
-//getOrderIdForDeletion
-const getOrderIdForDeletion = async (orderId) => {
+//getOrderId
+const getOrderId = async (orderId) => {
   //lookup for the order using the orderId in the database to get all its information
   const order = await Order.find({ orderId: orderId });
 
@@ -33,9 +33,7 @@ const getOrderIdForDeletion = async (orderId) => {
 
 const orderIdExists = async (orderId) => {
   const order = await Order.find({ orderId: orderId });
-
-  console.log(order);
-
+  //check if the orderId exists in the database
   if (order.length > 0) {
     return true;
   } else {
@@ -43,4 +41,4 @@ const orderIdExists = async (orderId) => {
   }
 };
 
-export { transformOrderData, getOrderIdForDeletion, orderIdExists };
+export { transformOrderData, getOrderId, orderIdExists };
