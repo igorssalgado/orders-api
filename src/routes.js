@@ -9,9 +9,9 @@ import {
 
 const routes = Router();
 
+routes.get("/order/list", getAllOrders)
 routes.post("/order", createOrder);
 routes.get("/order/:orderId", getOrderByOrderId);
-routes.get("/", getAllOrders)
 routes.delete("/order/:orderId", deleteOrder)
 
 export default routes;
