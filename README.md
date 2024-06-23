@@ -1,20 +1,22 @@
 # Orders API
 
-to run on dev
-npm run dev
+NodeJS API to create, list, delete orders.
+
+# How to install
+
+Run the command bellow in the project's folder:
+
+    npm install
 
 # Endpoints
-Criar um novo pedido. (Obrigatório).
-URL: http://localhost:3000/order
 
-Obter os dados do pedido passando por parâmetro na URL o número do pedido. (Obrigatório)
-URL: http://localhost:3000/order/v10089016vdb
+Create new order: POST /order
 
-Listar todos os pedidos. (Opcional)
-URL: http://localhost:3000/order/list
+Get order data using the order id: GET /order/:orderId
 
-Atualizar o pedido passando por parâmetro na url o número do pedido que será atualizado. (Opcional)
-URL: http://localhost:3000/order/v10089016vdb
+List all orders: GET /order/list
 
-Delete o pedido passando por parâmetro na url o número do pedido que será deletado.. (Opcional)
-URL: http://localhost:3000/order/v10089016vdb
+Update order: PUT /order/:orderId
+(TO BE IMPLEMENTED)
+
+Delete order: DELETE /order/:orderId
