@@ -27,8 +27,6 @@ Delete order: DELETE /order/:orderId
 
 # JSON Body example
 
-# JSON Body example
-
 {
 
     "numeroPedido": "v10089015vdb-01",
