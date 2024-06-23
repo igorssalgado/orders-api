@@ -39,7 +39,7 @@ const getOrderByOrderId = async (request, response) => {
 
     //if idFound is not true, throw error
     if (idFound != true) {
-      throw new Error();
+      throw new Error("orderId does not exists.");
     }
 
     //gets the orderId value from the URL param e calls getOrderId service, to get order id to findById
