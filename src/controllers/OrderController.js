@@ -36,7 +36,9 @@ const getOrderByOrderId = async (request, response) => {
 
 //list all orders
 const getAllOrders = async (request, response) => {
+  const orders = await Order.find();
 
+  return response.status(200).json(orders);
 };
 
 //update order
@@ -47,4 +49,4 @@ const deleteOrder = async (request, response) => {
 
 };
 
-export {createOrder, getOrderByOrderId};
+export {createOrder, getOrderByOrderId, getAllOrders};
