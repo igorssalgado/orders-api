@@ -1,7 +1,6 @@
 // import { OrderController } from '../controllers/OrderController.js';
 import Order from "../models/Orders.js";
 
-
 const renameKey = (orderNew) => {
   //get the order JSON, stringify it and replace the keys names to the translated text
   orderNew = JSON.stringify(orderNew).replace("numeroPedido", "orderId");
@@ -20,8 +19,8 @@ const transformOrderData = async (order) => {
   return orderNew;
 };
 
-//transformOrderData
-const getOrderIdForDeletion = async (orderId) => {
+//getOrderId
+const getOrderId = async (orderId) => {
   //lookup for the order using the orderId in the database to get all its information
   const order = await Order.find({ orderId: orderId });
 
@@ -32,4 +31,14 @@ const getOrderIdForDeletion = async (orderId) => {
   return retrieveOrderId;
 };
 
-export { transformOrderData, getOrderIdForDeletion };
+const orderIdExists = async (orderId) => {
+  const order = await Order.find({ orderId: orderId });
+  //check if the orderId exists in the database
+  if (order.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export { transformOrderData, getOrderId, orderIdExists };

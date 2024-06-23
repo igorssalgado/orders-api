@@ -1,26 +1,41 @@
 # Orders API
 
-to run on dev
+NodeJS API to create, list, delete orders.
 
-npm run dev
+# How to install
+
+Run the command bellow in the project's folder:
+
+    npm install
+
+# How to use
+
+After the depencies are installed, run the command nodemon `src/index.js` or `npm run dev` as defined in package.json. With you fetch requests using Insomnia using the URL http://localhost:3000 with the desired EndPoint
 
 # Endpoints
-Criar um novo pedido. (Obrigatório).
 
-URL: http://localhost:3000/order
+Create new order: POST /order
 
-Obter os dados do pedido passando por parâmetro na URL o número do pedido. (Obrigatório)
+Get order data using the order id: GET /order/:orderId
 
-URL: http://localhost:3000/order/v10089016vdb
+List all orders: GET /order/list
 
-Listar todos os pedidos. (Opcional)
+Update order: PUT /order/:orderId
+(TO BE IMPLEMENTED)
 
-URL: http://localhost:3000/order/list
+Delete order: DELETE /order/:orderId
 
-Atualizar o pedido passando por parâmetro na url o número do pedido que será atualizado. (Opcional)
+# JSON Body example
 
-URL: http://localhost:3000/order/v10089016vdb
-
-Delete o pedido passando por parâmetro na url o número do pedido que será deletado.. (Opcional)
-
-URL: http://localhost:3000/order/v10089016vdb
+{
+    "numeroPedido": "v10089015vdb-01",
+    "valorTotal": 10000,
+    "dataCriacao": "2023-07-19T12:24:11.5299601+00:00",
+    "items": [
+        {
+        "idItem": "2434",
+        "quantidadeItem": 1,
+        "valorItem": 1000
+        }
+    ]
+}
