@@ -50,3 +50,7 @@ Delete order: DELETE /order/:orderId
     ]
 
 }
+
+# Authors
+
+@igorssalgado
