@@ -1,10 +1,12 @@
 import Order from "../models/Orders.js";
-import { transformOrderData } from "../services/OrderService.js";
+import {
+  transformOrderData,
+  getOrderIdForDeletion,
+} from "../services/OrderService.js";
 
 //create new order
 const createOrder = async (request, response) => {
   const order = request.body;
-
 
   //gets the transformed JSON from the service
   const newOrder = await transformOrderData(order);
@@ -25,10 +27,10 @@ const getOrderByOrderId = async (request, response) => {
   const order = await Order.find({ orderId: orderId });
 
   //retrieve the order _id, from the order JSON returned in the map array in string
-  let retrieveOrderId = order.map((item)=> item._id.toString());
+  let retrieveOrderId = order.map((item) => item._id.toString());
 
   //uses the order id in the 0 index of the map's array and find it in the database
-  const orderFound = await Order.findById({_id: retrieveOrderId[0]});
+  const orderFound = await Order.findById({ _id: retrieveOrderId[0] });
 
   //returns 200 once the order is found and return it as JSON.
   return response.status(200).json(orderFound);
@@ -46,7 +48,16 @@ const updateOrder = async (request, response) => {};
 
 //delete order
 const deleteOrder = async (request, response) => {
+  //gets the orderId value from the URL param e calls getOrderIdForDeletion service, to get order id to delete
+  const id = await getOrderIdForDeletion(request.params.orderId);
 
+  //uses the order id in the 0 index of the map's array and find it in the database
+  await Order.findByIdAndDelete({ _id: id });
+
+  //returns 200 once the order is found and confirm the deleted orderId.
+  return response
+    .status(200)
+    .json({ response: `orderId: ${request.params.orderId} deleted.` });
 };
 
-export {createOrder, getOrderByOrderId, getAllOrders};
+export { createOrder, getOrderByOrderId, getAllOrders, deleteOrder };
