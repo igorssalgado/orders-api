@@ -13,6 +13,14 @@ const createOrder = async (request, response) => {
     //gets the transformed JSON from the service
     const newOrder = await transformOrderData(order);
 
+    //check if the orderId exists
+    const idFound = await orderIdExists(newOrder.orderId);
+
+    //if idFound is true, throw an error
+    if (idFound == true) {
+      throw new Error("orderId already exists.");
+    }
+
     //gets the asynchronous response from the Database, of the order's data from the request body using the Order's model.
     const successful = await Order.create(newOrder);
 
@@ -69,7 +77,7 @@ const deleteOrder = async (request, response) => {
 
     //if idFound is not true, throw error
     if (idFound != true) {
-      throw new Error();
+      throw new Error("orderId does not exists.");
     }
 
     //gets the orderId value from the URL param e calls getOrderId service, to get order id to delete
