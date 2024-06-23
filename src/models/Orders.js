@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  numeroPedido: { type: String },
-  valorTotal: { type: Number },
-  dataCriacao: { type: Date, default: Date.now() },
+  orderId: { type: String },
+  value: { type: Number },
+  creationDate: { type: Date, default: Date.now() },
   items: [
     {
-      idItem: { type: String },
-      quantidadeItem: { type: String },
-      valorItem: { type: Number },
+      productId: { type: String },
+      quantity: { type: String },
+      price: { type: Number },
     },
   ],
 });
