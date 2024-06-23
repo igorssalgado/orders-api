@@ -1,6 +1,6 @@
 # Orders API
 
-NodeJS API to create, list, delete orders.
+NodeJS API to create, list and delete orders.
 
 # How to install
 
@@ -10,7 +10,7 @@ Run the command bellow in the project's folder:
 
 # How to use
 
-After the depencies are installed, run the command nodemon `src/index.js` or `npm run dev` as defined in package.json. With you fetch requests using Insomnia using the URL http://localhost:3000 with the desired EndPoint
+After the dependencies are installed, run the command nodemon `src/index.js` or `npm run dev` as defined in package.json. With you fetch requests using Insomnia using the URL http://localhost:3000 with the desired EndPoint
 
 # Endpoints
 
