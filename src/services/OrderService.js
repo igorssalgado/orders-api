@@ -31,11 +31,17 @@ const getOrderId = async (orderId) => {
   return retrieveOrderId;
 };
 
-const orderIdExists = async (orderId) => {
-  const order = await Order.find({ orderId: orderId });
+const orderIdExists = async (orderId, isNewOrder) => {
+
   //check if the orderId exists in the database
+  const order = await Order.find({ orderId: orderId });
+  
+  //if length is greater than 0 and it is new order, avoid create a duplicate order
+  //if length is iquals to 0 and is not a new order, it should exists, therefore it returns the error.
   if (order.length == 0) {
-    throw new Error("orderId does not exists.");;
+    if (isNewOrder == false) throw new Error("orderId does not exists.");
+  }else if (order.length > 0){
+    if (isNewOrder == true) throw new Error("orderId already in use");
   }
 };
 
