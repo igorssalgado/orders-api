@@ -14,12 +14,7 @@ const createOrder = async (request, response) => {
     const newOrder = await transformOrderData(order);
 
     //check if the orderId exists
-    const idFound = await orderIdExists(newOrder.orderId);
-
-    //if idFound is true, throw an error
-    if (idFound == true) {
-      throw new Error("orderId already exists.");
-    }
+    await orderIdExists(newOrder.orderId);
 
     //gets the asynchronous response from the Database, of the order's data from the request body using the Order's model.
     const successful = await Order.create(newOrder);
@@ -35,12 +30,7 @@ const createOrder = async (request, response) => {
 const getOrderByOrderId = async (request, response) => {
   try {
     //check if the orderId exists
-    const idFound = await orderIdExists(request.params.orderId);
-
-    //if idFound is not true, throw error
-    if (idFound != true) {
-      throw new Error("orderId does not exists.");
-    }
+    await orderIdExists(request.params.orderId);
 
     //gets the orderId value from the URL param e calls getOrderId service, to get order id to findById
     const id = await getOrderId(request.params.orderId);
@@ -72,12 +62,9 @@ const updateOrder = async (request, response) => {
     const order = request.body;
 
     //check if the orderId exists
-    const idFound = await orderIdExists(request.params.orderId);
+    await orderIdExists(request.params.orderId);
 
-    //if idFound is not true, throw error
-    if (idFound != true) {
-      throw new Error("orderId does not exists.");
-    }
+    
     //gets the orderId value from the URL param e calls getOrderId service, to get order id to delete
     const id = await getOrderId(request.params.orderId);
 
@@ -95,12 +82,7 @@ const updateOrder = async (request, response) => {
 const deleteOrder = async (request, response) => {
   try {
     //check if the orderId exists
-    const idFound = await orderIdExists(request.params.orderId);
-
-    //if idFound is not true, throw error
-    if (idFound != true) {
-      throw new Error("orderId does not exists.");
-    }
+    await orderIdExists(request.params.orderId);
 
     //gets the orderId value from the URL param e calls getOrderId service, to get order id to delete
     const id = await getOrderId(request.params.orderId);

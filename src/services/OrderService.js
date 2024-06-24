@@ -34,10 +34,8 @@ const getOrderId = async (orderId) => {
 const orderIdExists = async (orderId) => {
   const order = await Order.find({ orderId: orderId });
   //check if the orderId exists in the database
-  if (order.length > 0) {
-    return true;
-  } else {
-    return false;
+  if (order.length == 0) {
+    throw new Error("orderId does not exists.");;
   }
 };
 
