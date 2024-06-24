@@ -67,7 +67,29 @@ const getAllOrders = async (request, response) => {
 };
 
 //update order
-const updateOrder = async (request, response) => {};
+const updateOrder = async (request, response) => {
+  try {
+    const order = request.body;
+
+    //check if the orderId exists
+    const idFound = await orderIdExists(request.params.orderId);
+
+    //if idFound is not true, throw error
+    if (idFound != true) {
+      throw new Error("orderId does not exists.");
+    }
+    //gets the orderId value from the URL param e calls getOrderId service, to get order id to delete
+    const id = await getOrderId(request.params.orderId);
+
+    //gets the asynchronous response from the Database, of the order's data from the request body using the Order's model.
+    const successful = await Order.findByIdAndUpdate(id[0], order, {new: true});
+
+    //returns 201 once the order is created and sent to the Database
+    return response.status(201).json(successful);
+  } catch (error) {
+    return response.json({ response: error.message });
+  }
+};
 
 //delete order
 const deleteOrder = async (request, response) => {
@@ -95,4 +117,10 @@ const deleteOrder = async (request, response) => {
   }
 };
 
-export { createOrder, getOrderByOrderId, getAllOrders, deleteOrder };
+export {
+  createOrder,
+  getOrderByOrderId,
+  getAllOrders,
+  deleteOrder,
+  updateOrder,
+};
