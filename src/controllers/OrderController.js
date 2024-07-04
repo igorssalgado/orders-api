@@ -27,7 +27,7 @@ const createOrder = async (request, response) => {
     //returns 201 once the order is created and sent to the Database
     return response.status(201).json(successful);
   } catch (error) {
-    return response.json({ response: error.message });
+    return response.status(400).json({ response: error.message });
   } finally {
     //reset isNewOrder to false
     isNewOrder = false;
@@ -49,7 +49,7 @@ const getOrderByOrderId = async (request, response) => {
     //returns 200 once the order is found and return it as JSON.
     return response.status(200).json(orderFound);
   } catch (error) {
-    return response.json({ response: error.message });
+    return response.status(400).json({ response: error.message });
   }
 };
 
@@ -60,7 +60,7 @@ const getAllOrders = async (request, response) => {
 
     return response.status(200).json(orders);
   } catch (error) {
-    return response.json({ response: error.message });
+    return response.status(400).json({ response: error.message });
   }
 };
 
@@ -82,7 +82,7 @@ const updateOrder = async (request, response) => {
     //returns 201 once the order is created and sent to the Database
     return response.status(201).json(successful);
   } catch (error) {
-    return response.json({ response: error.message });
+    return response.status(400).json({ response: error.message });
   }
 };
 
@@ -103,7 +103,7 @@ const deleteOrder = async (request, response) => {
       .status(200)
       .json({ response: `orderId: ${request.params.orderId} deleted.` });
   } catch (error) {
-    return response.json({ response: error.message });
+    return response.status(400).json({ response: error.message });
   }
 };
 
